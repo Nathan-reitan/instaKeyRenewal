@@ -16,11 +16,11 @@ app.use(express.json());
 app.get('/api/accesstokens', (req, res, next) => {
     const sql = `select "property",
                         "key"
-                from "accesstokens
+                from "accesstokens";
                 `;
     db.query(sql)
         .then(result => {
-            const keys = results.rows;
+            const keys = result.rows;
             res.status(200).send(keys)
         })
         .catch(err=>{
@@ -29,8 +29,9 @@ app.get('/api/accesstokens', (req, res, next) => {
         });
 });
 
-app.get('/respond', (req, res, next) => {
-    return res.status(200).send('success')
+// refresh tokens
+app.get('', (req, res, next) => {
+  
 })
 
 app.use('/api', (req, res, next) => {
