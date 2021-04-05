@@ -29,8 +29,10 @@ app.get('/api/accesstokens', (req, res, next) => {
         });
 });
 
+const test = IGQVJXRWVkUkUweEJkTEY5N3UxZAFpKX0lQaHktUmRIUFVxdEZASandWS0NjanIta29YRkhFU3l4RGdaR3QydWl0SzVlZAzlxQXdBV2RfTEtITjJ6SkVaWkFGbER4QmpoOWxWREY4eUpB
+
 // refresh tokens
-app.get('', (req, res, next) => {
+app.get('https://graph.instagram.com/refresh_access_token?grant_type=ig_refresh_token&access_token='+ test, (req, res, next) => {
   
 })
 
