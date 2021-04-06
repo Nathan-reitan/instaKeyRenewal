@@ -25,8 +25,9 @@ app.get('/api/accesstokens', (req, res, next) => {
             return results.rows
         })
         .then(property =>{
-          const name = property[0].property;
-          const key = property[0].key;
+          for (let i=0; i<property.length; i++){
+          const name = property[i].property;
+          const key = property[i].key;
           fetch("https://graph.instagram.com/refresh_access_token?grant_type=ig_refresh_token&access_token="+key)
               .then(response => {
                 return response.json()
@@ -39,15 +40,14 @@ app.get('/api/accesstokens', (req, res, next) => {
                 let newToken = `update "accesstokens"
                                   set  "key" = $1
                                 where  "property" = $2
-                                returning *;`
+                                returning *;
+                                `
                     db.query(newToken, params)
                         .then(upd => {
                           res.status(200).send(upd.rows[0])
                         })
               })
-          // for (let i=0; i<property.length; i++){
-            
-          // }
+            }
         })
         .catch(err=>{
             console.error(err);
